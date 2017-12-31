@@ -70,6 +70,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O3j-SQ-1d0">
                                                     <rect key="frame" x="310" y="9.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="mainLightSwitchChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="f7L-Yg-NCH"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-sA-l8Z">
                                                     <rect key="frame" x="260.5" y="14" width="33.5" height="21"/>
@@ -146,6 +149,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ee3-1E-Mi3">
                                                     <rect key="frame" x="310" y="9.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="ledSwitchChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="Lgk-La-v9a"/>
+                                                    </connections>
                                                 </switch>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNP-xZ-eCf">
                                                     <rect key="frame" x="264" y="10" width="30" height="30"/>
