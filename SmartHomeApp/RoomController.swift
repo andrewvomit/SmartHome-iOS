@@ -52,11 +52,16 @@ class RoomController: UITableViewController {
         mainLightChanged()
     }
     
+    
     @IBAction func mainLightSliderChanged(_ sender: Any) {
-        
+    
         // Показываем значение яркости
         let value = Int(mainLightSlider.value * 100)
         currentValueLabel.text = "\(value)%"
+    }
+    
+    
+    @IBAction func mainLightSliderDidChanged(_ sender: Any) {
         
         // Посылаем на arduino
         mainLightChanged()
@@ -65,7 +70,7 @@ class RoomController: UITableViewController {
     func mainLightChanged() {
         
         // Рассчитываем значение яркости
-        let bright = Int(mainLightSlider.value * 100)
+        let bright = Int(mainLightSlider.value * 255)
         
         // Делаем запрос к arduino
         connectionService.updateMainLight(turnOn: mainLightSwitch.isOn, bright: bright) { (_) in
@@ -94,6 +99,9 @@ class RoomController: UITableViewController {
                             green: CGFloat(ledGreenSlider.value),
                             blue: CGFloat(ledBlueSlider.value), alpha: 1)
         currentColorView.backgroundColor = color
+    }
+    
+    @IBAction func ledSliderDidChanged(_ sender: Any) {
         
         // Посылаем на arduino
         ledChanged()
@@ -102,9 +110,9 @@ class RoomController: UITableViewController {
     func ledChanged() {
         
         // Рассчитываем значение цветов
-        let red = Int(ledRedSlider.value * 100)
-        let green = Int(ledGreenSlider.value * 100)
-        let blue = Int(ledBlueSlider.value * 100)
+        let red = Int(ledRedSlider.value * 255)
+        let green = Int(ledGreenSlider.value * 255)
+        let blue = Int(ledBlueSlider.value * 255)
         
         // Делаем запрос к arduino
         connectionService.updateLED(turnOn: ledSwitch.isOn, red: red, green: green, blue: blue) { (_) in

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZZU-PV-U9N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZZU-PV-U9N">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -101,7 +101,8 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Oui-io-zOa">
                                                     <rect key="frame" x="51.5" y="10" width="259.5" height="31"/>
                                                     <connections>
-                                                        <action selector="mainLightSliderChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="pDG-jB-1u6"/>
+                                                        <action selector="mainLightSliderChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="HVD-Eo-hMc"/>
+                                                        <action selector="mainLightSliderDidChanged:" destination="k3p-lb-UK7" eventType="touchUpInside" id="6Wh-Cm-dhN"/>
                                                     </connections>
                                                 </slider>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bright-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="O5i-v6-W3z">
@@ -188,6 +189,7 @@
                                                     <color key="minimumTrackTintColor" red="0.88235294117647056" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="ledSliderChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="0HE-5j-vFa"/>
+                                                        <action selector="ledSliderDidChanged:" destination="k3p-lb-UK7" eventType="touchUpInside" id="PZf-vG-etX"/>
                                                     </connections>
                                                 </slider>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bright-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="OBf-sb-ere">
@@ -228,6 +230,7 @@
                                                     <color key="minimumTrackTintColor" red="0.0" green="0.88235294117647056" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="ledSliderChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="567-gg-GBD"/>
+                                                        <action selector="ledSliderDidChanged:" destination="k3p-lb-UK7" eventType="touchUpInside" id="TZU-Pe-KzV"/>
                                                     </connections>
                                                 </slider>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bright-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-CD-i0w">
@@ -268,6 +271,7 @@
                                                     <color key="minimumTrackTintColor" red="0.0" green="0.0" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="ledSliderChanged:" destination="k3p-lb-UK7" eventType="valueChanged" id="n6n-tE-usL"/>
+                                                        <action selector="ledSliderDidChanged:" destination="k3p-lb-UK7" eventType="touchUpInside" id="dyx-I8-Idz"/>
                                                     </connections>
                                                 </slider>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bright-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="sZT-fv-3wz">
