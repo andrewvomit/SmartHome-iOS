@@ -22,6 +22,9 @@ class RoomController: UITableViewController {
     
     @IBOutlet weak var currentColorView: UIView!
     
+    var stubView = UIView(frame: CGRect.zero)
+    var indicator = UIActivityIndicatorView(frame: CGRect.zero)
+    
     let connectionService = ConnectionService()
     
     override func viewDidLoad() {
@@ -32,6 +35,51 @@ class RoomController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        prepareStubView()
+    }
+    
+    func prepareStubView() {
+        
+        // Добавляем заглушку загрузки
+        
+        guard let navigationView = self.navigationController?.view else {
+            return
+        }
+        
+        navigationView.addSubview(stubView)
+        stubView.translatesAutoresizingMaskIntoConstraints = false
+        stubView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        stubView.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: 0).isActive = true
+        stubView.leadingAnchor.constraint(equalTo: navigationView.leadingAnchor, constant: 0).isActive = true
+        stubView.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: 0).isActive = true
+        stubView.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 0).isActive = true
+        
+        stubView.addSubview(indicator)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.activityIndicatorViewStyle = .whiteLarge
+        indicator.centerXAnchor.constraint(equalTo: stubView.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: stubView.centerYAnchor).isActive = true
+
+        stubView.isHidden = true
+    }
+    
+    func showStub() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.stubView.isHidden = false
+        }) { (_) in
+            self.indicator.startAnimating()
+        }
+    }
+    
+    func hideStub() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.stubView.isHidden = true
+        }) { (_) in
+            self.indicator.stopAnimating()
+        }
     }
 
     // MARK: - Table view data source
@@ -73,7 +121,11 @@ class RoomController: UITableViewController {
         let bright = Int(mainLightSlider.value * 255)
         
         // Делаем запрос к arduino
-        connectionService.updateMainLight(turnOn: mainLightSwitch.isOn, bright: bright) { (_) in
+        showStub()
+        connectionService.updateMainLight(turnOn: mainLightSwitch.isOn, bright: bright, success: {
+            self.hideStub()
+        }) { (_) in
+            self.hideStub()
             
             // Если ошибка, то показываем уведомление
             let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
@@ -115,7 +167,11 @@ class RoomController: UITableViewController {
         let blue = Int(ledBlueSlider.value * 255)
         
         // Делаем запрос к arduino
-        connectionService.updateLED(turnOn: ledSwitch.isOn, red: red, green: green, blue: blue) { (_) in
+        showStub()
+        connectionService.updateLED(turnOn: ledSwitch.isOn, red: red, green: green, blue: blue, success: {
+            self.hideStub()
+        }) { (_) in
+            self.hideStub()
             
             // Если ошибка, то показываем уведомление
             let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
