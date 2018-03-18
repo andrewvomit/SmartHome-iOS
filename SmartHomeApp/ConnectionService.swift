@@ -11,7 +11,7 @@ import Alamofire
 
 class ConnectionService {
 
-    let ip: String = "192.168.4.1"
+    let ip: String = "192.168.2.74"
     let port: String = "80"
     
     func updateMainLight(turnOn: Bool, bright: Int, success: (() -> Void)? = nil, failure: ((Error?) -> Void)? = nil) {
