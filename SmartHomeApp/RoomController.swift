@@ -125,8 +125,11 @@ class RoomController: UITableViewController {
         
         // Делаем запрос к arduino
         showStub()
-        connectionService.updateMainLight(turnOn: mainLightSwitch.isOn, bright: bright, success: {
+        connectionService.updateMainLight(turnOn: mainLightSwitch.isOn, bright: bright, success: { (data) in
             self.hideStub()
+            
+            self.updateUI(data: data)
+            
         }) { (_) in
             self.hideStub()
             
@@ -171,8 +174,11 @@ class RoomController: UITableViewController {
         
         // Делаем запрос к arduino
         showStub()
-        connectionService.updateLED(turnOn: ledSwitch.isOn, red: red, green: green, blue: blue, success: {
+        connectionService.updateLED(turnOn: ledSwitch.isOn, red: red, green: green, blue: blue, success: { (data) in
             self.hideStub()
+            
+            self.updateUI(data: data)
+            
         }) { (_) in
             self.hideStub()
             
@@ -191,9 +197,11 @@ class RoomController: UITableViewController {
         
         // Делаем запрос к arduino
         showStub()
-        connectionService.updateTemperature(success: { (value) in
+        connectionService.updateTemperature(success: { (data) in
             self.hideStub()
-            self.thermometerLabel.text = "\(value ?? 0)°C"
+            
+            self.updateUI(data: data)
+            
         }) { (error) in
             self.hideStub()
             
@@ -212,9 +220,11 @@ class RoomController: UITableViewController {
         
         // Делаем запрос к arduino
         showStub()
-        connectionService.updateLightSensor(success: { (value) in
+        connectionService.updateLightSensor(success: { (data) in
             self.hideStub()
-            self.lightSensorLabel.text = "\(value ?? 0)%"
+
+            self.updateUI(data: data)
+            
         }) { (error) in
             self.hideStub()
             
@@ -227,4 +237,56 @@ class RoomController: UITableViewController {
         }
     }
     
+    // MARK -
+    
+    func updateUI(data: [[String: Any]]) {
+        
+        for dict in data {
+            
+            let title = dict["title"] as! String
+            
+            switch title {
+            case "mainLight":
+                
+                let turnOn: Int = dict["turnOn"] as! Int
+                let bright: Int = dict["bright"] as! Int
+                
+                self.mainLightSwitch.isOn = (turnOn != 0)
+                self.mainLightSlider.value = Float(bright / 100)
+                
+                break
+                
+            case "led":
+                
+                let turnOn: Int = dict["turnOn"] as! Int
+                let red: Int = dict["red"] as! Int
+                let green: Int = dict["green"] as! Int
+                let blue: Int = dict["blue"] as! Int
+
+                self.ledSwitch.isOn = (turnOn != 0)
+                self.ledRedSlider.value = Float(red / 100)
+                self.ledGreenSlider.value = Float(green / 100)
+                self.ledBlueSlider.value = Float(blue / 100)
+                
+                break
+                
+            case "thermometr":
+                
+                let value = dict["value"] as! Float
+                self.thermometerLabel.text = "\(value)°C"
+                
+                break
+                
+            case "lightSensor":
+                
+                let value = dict["value"] as! Float
+                self.lightSensorLabel.text = "\(value)%"
+                
+                break
+                
+            default:
+                break
+            }
+        }
+    }
 }
