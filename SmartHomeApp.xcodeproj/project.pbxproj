@@ -14,6 +14,7 @@
 		0D6F69271FE55568002B59CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6F69251FE55568002B59CC /* Main.storyboard */; };
 		0D6F69291FE55568002B59CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D6F69281FE55568002B59CC /* Assets.xcassets */; };
 		0D6F692C1FE55568002B59CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D6F692A1FE55568002B59CC /* LaunchScreen.storyboard */; };
+		6AA3B40D205ED062001B590F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3B40C205ED062001B590F /* SettingsViewController.swift */; };
 		EFFA2BAED9999685187C3141 /* Pods_SmartHomeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59E7546DD8587E9868E5BF6 /* Pods_SmartHomeApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		0D6F69281FE55568002B59CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D6F692B1FE55568002B59CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D6F692D1FE55568002B59CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AA3B40C205ED062001B590F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8785E1D843DC0428F69BCC0D /* Pods-SmartHomeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeApp/Pods-SmartHomeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D59E7546DD8587E9868E5BF6 /* Pods_SmartHomeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartHomeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FC23ED97B96E83949E6DFE /* Pods-SmartHomeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartHomeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartHomeApp/Pods-SmartHomeApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				0D6F69211FE55568002B59CC /* AppDelegate.swift */,
 				0D6F69231FE55568002B59CC /* ViewController.swift */,
 				0D055A931FF8166400F045BD /* RoomController.swift */,
+				6AA3B40C205ED062001B590F /* SettingsViewController.swift */,
 				0D055A951FF91EC000F045BD /* ConnectionService.swift */,
 				0D6F69251FE55568002B59CC /* Main.storyboard */,
 				0D6F69281FE55568002B59CC /* Assets.xcassets */,
@@ -226,6 +229,7 @@
 				0D6F69241FE55568002B59CC /* ViewController.swift in Sources */,
 				0D055A941FF8166400F045BD /* RoomController.swift in Sources */,
 				0D6F69221FE55568002B59CC /* AppDelegate.swift in Sources */,
+				6AA3B40D205ED062001B590F /* SettingsViewController.swift in Sources */,
 				0D055A961FF91EC000F045BD /* ConnectionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

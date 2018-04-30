@@ -22,6 +22,9 @@ class RoomController: UITableViewController {
     
     @IBOutlet weak var currentColorView: UIView!
     
+    @IBOutlet weak var thermometerLabel: UILabel!
+    @IBOutlet weak var lightSensorLabel: UILabel!
+    
     var stubView = UIView(frame: CGRect.zero)
     var indicator = UIActivityIndicatorView(frame: CGRect.zero)
     
@@ -85,11 +88,11 @@ class RoomController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (section == 0) ? 2 : 4
+        return (section == 1) ? 4 : 2
     }
     
     // MARK: - Main Light
@@ -181,4 +184,47 @@ class RoomController: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    // MARK: Thermometer
+    
+    @IBAction func updateThermometer(_ sender: Any) {
+        
+        // Делаем запрос к arduino
+        showStub()
+        connectionService.updateTemperature(success: { (value) in
+            self.hideStub()
+            self.thermometerLabel.text = "\(value ?? 0)°C"
+        }) { (error) in
+            self.hideStub()
+            
+            // Если ошибка, то показываем уведомление
+            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: Light sensor
+    
+    @IBAction func updateLightSensor(_ sender: Any) {
+        
+        // Делаем запрос к arduino
+        showStub()
+        connectionService.updateLightSensor(success: { (value) in
+            self.hideStub()
+            self.lightSensorLabel.text = "\(value ?? 0)%"
+        }) { (error) in
+            self.hideStub()
+            
+            // Если ошибка, то показываем уведомление
+            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }

@@ -11,7 +11,7 @@ import Alamofire
 
 class ConnectionService {
 
-    let ip: String = "192.168.4.1"
+    let ip: String = UserDefaults.standard.string(forKey: "device-ip") ?? "192.168.4.1"
     let port: String = "80"
     let timeout: Int = 3 // время ожидания при запросе
     
@@ -50,6 +50,42 @@ class ConnectionService {
                 failure?(error)
             } else {
                 success?()
+            }
+        }
+    }
+    
+    func updateTemperature(success: ((Float?) -> Void)? = nil, failure: ((Error?) -> Void)? = nil) {
+     
+        sessionManager.request("http://\(ip):\(port)/thermometr/", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            
+            if let error = response.error {
+                failure?(error)
+            } else {
+                
+                // Парсим JSON, чтобы найти температуру.
+                if let json = response.result.value as? [String: Any], let data = json["response"] as? [String: Any], let value = data["value"] as? Float {
+                    success?(value)
+                }
+                
+                failure?(nil)
+            }
+        }
+    }
+    
+    func updateLightSensor(success: ((Float?) -> Void)? = nil, failure: ((Error?) -> Void)? = nil) {
+        
+        sessionManager.request("http://\(ip):\(port)/lightSensor/", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            
+            if let error = response.error {
+                failure?(error)
+            } else {
+                
+                // Парсим JSON, чтобы найти освещённость.
+                if let json = response.result.value as? [String: Any], let data = json["response"] as? [String: Any], let value = data["value"] as? Float {
+                    success?(value)
+                }
+                
+                failure?(nil)
             }
         }
     }
