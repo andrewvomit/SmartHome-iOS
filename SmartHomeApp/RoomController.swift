@@ -134,11 +134,11 @@ class RoomController: UITableViewController {
             self.hideStub()
             
             // Если ошибка, то показываем уведомление
-            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
+//            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+//                alert.dismiss(animated: true, completion: nil)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -182,12 +182,12 @@ class RoomController: UITableViewController {
         }) { (_) in
             self.hideStub()
             
-            // Если ошибка, то показываем уведомление
-            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
+//            // Если ошибка, то показываем уведомление
+//            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+//                alert.dismiss(animated: true, completion: nil)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -205,12 +205,12 @@ class RoomController: UITableViewController {
         }) { (error) in
             self.hideStub()
             
-            // Если ошибка, то показываем уведомление
-            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
+//            // Если ошибка, то показываем уведомление
+//            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+//                alert.dismiss(animated: true, completion: nil)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -228,12 +228,12 @@ class RoomController: UITableViewController {
         }) { (error) in
             self.hideStub()
             
-            // Если ошибка, то показываем уведомление
-            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
+//            // Если ошибка, то показываем уведомление
+//            let alert = UIAlertController(title: "Ошибка", message: "Ошибка подключения к контроллеру умного дома", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.cancel, handler: { (_) in
+//                alert.dismiss(animated: true, completion: nil)
+//            }))
+//            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -248,38 +248,42 @@ class RoomController: UITableViewController {
             switch title {
             case "mainLight":
                 
-                let turnOn: Int = dict["turnOn"] as! Int
-                let bright: Int = dict["bright"] as! Int
-                
-                self.mainLightSwitch.isOn = (turnOn != 0)
-                self.mainLightSlider.value = Float(bright / 100)
+//                let turnOn: Int = dict["turnOn"] as! Int
+//                let bright: Int = dict["bright"] as! Int
+//
+//                self.mainLightSwitch.isOn = (turnOn != 0)
+//                self.mainLightSlider.value = Float(bright / 100)
+//
+//                self.mainLightSliderChanged(self)
                 
                 break
                 
             case "led":
                 
-                let turnOn: Int = dict["turnOn"] as! Int
-                let red: Int = dict["red"] as! Int
-                let green: Int = dict["green"] as! Int
-                let blue: Int = dict["blue"] as! Int
-
-                self.ledSwitch.isOn = (turnOn != 0)
-                self.ledRedSlider.value = Float(red / 100)
-                self.ledGreenSlider.value = Float(green / 100)
-                self.ledBlueSlider.value = Float(blue / 100)
+//                let turnOn: Int = dict["turnOn"] as! Int
+//                let red: Int = dict["red"] as! Int
+//                let green: Int = dict["green"] as! Int
+//                let blue: Int = dict["blue"] as! Int
+//
+//                self.ledSwitch.isOn = (turnOn != 0)
+//                self.ledRedSlider.value = Float(red / 100)
+//                self.ledGreenSlider.value = Float(green / 100)
+//                self.ledBlueSlider.value = Float(blue / 100)
+//
+//                self.ledSliderChanged(self)
                 
                 break
                 
             case "thermometr":
                 
-                let value = dict["value"] as! Float
+                let value = (dict["value"] as! NSNumber).floatValue
                 self.thermometerLabel.text = "\(value)°C"
                 
                 break
                 
             case "lightSensor":
                 
-                let value = dict["value"] as! Float
+                let value = (dict["value"] as! NSNumber).floatValue
                 self.lightSensorLabel.text = "\(value)%"
                 
                 break
